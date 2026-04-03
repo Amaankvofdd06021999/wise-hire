@@ -59,6 +59,10 @@ interface FilterSidebarProps {
   filters: FilterState;
   onChange: (filters: FilterState) => void;
   className?: string;
+  /** Render only the mobile sheet trigger */
+  mobile?: boolean;
+  /** Render only the desktop aside */
+  desktop?: boolean;
 }
 
 function FilterContent({ filters, onChange }: FilterSidebarProps) {
@@ -202,40 +206,48 @@ function FilterContent({ filters, onChange }: FilterSidebarProps) {
   );
 }
 
-export function FilterSidebar({ filters, onChange, className }: FilterSidebarProps) {
+export function FilterSidebar({ filters, onChange, className, mobile, desktop }: FilterSidebarProps) {
   const [open, setOpen] = useState(false);
+
+  // If neither flag is set, render both (backwards-compatible)
+  const showDesktop = desktop || (!mobile && !desktop);
+  const showMobile = mobile || (!mobile && !desktop);
 
   return (
     <>
       {/* Desktop sidebar */}
-      <aside
-        className={cn(
-          "hidden md:block w-[240px] shrink-0 border-r border-[var(--gray-200)] pr-4",
-          className,
-        )}
-      >
-        <ScrollArea className="h-[calc(100vh-12rem)]">
-          <FilterContent filters={filters} onChange={onChange} />
-        </ScrollArea>
-      </aside>
+      {showDesktop && (
+        <aside
+          className={cn(
+            "hidden md:block w-[240px] shrink-0",
+            className,
+          )}
+        >
+          <ScrollArea className="h-[calc(100vh-16rem)]">
+            <FilterContent filters={filters} onChange={onChange} />
+          </ScrollArea>
+        </aside>
+      )}
 
       {/* Mobile sheet trigger */}
-      <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="md:hidden">
-            <Filter size={16} />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-[280px] p-6">
-          <SheetHeader>
-            <SheetTitle>Filters</SheetTitle>
-            <SheetDescription className="sr-only">Filter candidates</SheetDescription>
-          </SheetHeader>
-          <div className="mt-4">
-            <FilterContent filters={filters} onChange={onChange} />
-          </div>
-        </SheetContent>
-      </Sheet>
+      {showMobile && (
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="md:hidden">
+              <Filter size={16} />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-[280px] p-6">
+            <SheetHeader>
+              <SheetTitle>Filters</SheetTitle>
+              <SheetDescription className="sr-only">Filter candidates</SheetDescription>
+            </SheetHeader>
+            <div className="mt-4">
+              <FilterContent filters={filters} onChange={onChange} />
+            </div>
+          </SheetContent>
+        </Sheet>
+      )}
     </>
   );
 }

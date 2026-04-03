@@ -18,30 +18,32 @@ export function StatCard({
   positive,
 }: StatCardProps) {
   return (
-    <div
-      className="rounded-xl bg-white p-6 card-hover"
-      style={{ boxShadow: "var(--shadow-sm)" }}
-    >
+    <div className="rounded-xl bg-white border border-[var(--gray-200)] p-5 flex flex-col justify-between gap-3 transition-shadow hover:shadow-md">
+      {/* Eyebrow label */}
       <p
-        className="text-xs font-medium uppercase tracking-wide"
+        className="text-sm font-medium"
         style={{ color: "var(--gray-500)" }}
       >
         {eyebrow}
       </p>
+
+      {/* Large value */}
       <p
-        className="mt-1 text-2xl font-semibold"
+        className="text-2xl font-bold tracking-tight lg:text-3xl"
         style={{ color: "var(--gray-900)" }}
       >
         {value}
       </p>
-      <div className="mt-2">
+
+      {/* Delta + subtitle row */}
+      <div className="flex items-center gap-2">
         <TrendIndicator value={delta} suffix={deltaSuffix} positive={positive} />
+        {subtitle && (
+          <span className="text-xs" style={{ color: "var(--gray-400)" }}>
+            {subtitle}
+          </span>
+        )}
       </div>
-      {subtitle && (
-        <p className="mt-1 text-xs" style={{ color: "var(--gray-400)" }}>
-          {subtitle}
-        </p>
-      )}
     </div>
   );
 }

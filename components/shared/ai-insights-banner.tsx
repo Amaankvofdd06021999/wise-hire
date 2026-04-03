@@ -23,21 +23,21 @@ export function AiInsightsBanner({
   badge,
 }: AiInsightsBannerProps) {
   return (
-    <div className="rounded-xl bg-[var(--brand-50)] p-6">
+    <div className="rounded-xl bg-[var(--brand-50)] border border-[var(--brand-200,#C6D4FF)] p-6 lg:p-8">
       {/* Top row: icon + text + badge */}
       <div className="flex items-start justify-between gap-4">
-        <div className="flex items-start gap-3 min-w-0">
+        <div className="flex items-start gap-4 min-w-0">
           {/* Icon circle */}
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-100)] text-[var(--brand-600)]">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--brand-100)] text-[var(--brand-600)]">
             {icon}
           </div>
 
           {/* Title + description */}
           <div className="min-w-0">
-            <h3 className="text-sm font-semibold text-[var(--gray-900)] leading-tight">
+            <h3 className="text-sm font-semibold text-[var(--gray-900)] leading-tight lg:text-base">
               {title}
             </h3>
-            <p className="mt-1 text-sm text-[var(--gray-600)] leading-relaxed">
+            <p className="mt-1.5 text-sm text-[var(--gray-600)] leading-relaxed">
               {description}
             </p>
           </div>
@@ -54,14 +54,14 @@ export function AiInsightsBanner({
 
       {/* Stats row */}
       {stats && stats.length > 0 && (
-        <div className="mt-5 flex flex-wrap items-center gap-6">
+        <div className="mt-6 flex flex-wrap items-center gap-8">
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col gap-0.5">
-              <span className="text-xs text-[var(--gray-500)] leading-none">
+            <div key={stat.label} className="flex flex-col gap-1">
+              <span className="text-xs font-medium text-[var(--gray-500)] leading-none">
                 {stat.label}
               </span>
               <span
-                className="text-xl font-semibold leading-tight"
+                className="text-xl font-bold leading-tight"
                 style={{ color: stat.color ?? "var(--brand-600)" }}
               >
                 {stat.value}

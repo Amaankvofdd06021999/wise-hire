@@ -13,18 +13,15 @@ import { pipelineStages } from "@/lib/mock-data";
 
 export function PipelineFunnel() {
   return (
-    <div
-      className="rounded-xl bg-white p-6"
-      style={{ boxShadow: "var(--shadow-sm)" }}
-    >
+    <div className="rounded-xl bg-white border border-[var(--gray-200)] p-6 lg:p-8 transition-shadow hover:shadow-md">
       <h2
-        className="text-base font-semibold"
+        className="text-base font-semibold lg:text-lg"
         style={{ color: "var(--gray-900)" }}
       >
         Pipeline Overview
       </h2>
 
-      <div className="mt-4" style={{ width: "100%", height: 320 }}>
+      <div className="mt-6" style={{ width: "100%", height: 340 }}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={pipelineStages}

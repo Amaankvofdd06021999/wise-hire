@@ -6,14 +6,11 @@ interface HealthScoreProps {
 
 export function HealthScore({ score }: HealthScoreProps) {
   return (
-    <div
-      className="flex flex-col items-center justify-center gap-3 rounded-xl bg-white p-6 card-hover"
-      style={{ boxShadow: "var(--shadow-sm)" }}
-    >
-      <ScoreRing score={score} size={120} tierType="health" />
+    <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-white border border-[var(--gray-200)] p-5 transition-shadow hover:shadow-md">
+      <ScoreRing score={score} size={100} tierType="health" />
       <span
         className="text-sm font-medium"
-        style={{ color: "var(--gray-700)" }}
+        style={{ color: "var(--gray-600)" }}
       >
         Hiring Health
       </span>

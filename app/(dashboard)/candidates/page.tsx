@@ -258,12 +258,15 @@ export default function CandidatesPage() {
           Bulk AI Screen
         </Button>
 
-        {/* Mobile filter toggle */}
-        <FilterSidebar filters={filters} onChange={setFilters} />
+        {/* Mobile filter toggle (sheet only) */}
+        <FilterSidebar filters={filters} onChange={setFilters} mobile />
       </div>
 
       {/* Content layout */}
       <div className="mt-8 flex gap-6">
+        {/* Desktop filter sidebar */}
+        <FilterSidebar filters={filters} onChange={setFilters} desktop />
+
         {/* Main content */}
         <div className="flex-1 min-w-0">
           {filtered.length === 0 ? (
@@ -284,7 +287,7 @@ export default function CandidatesPage() {
               </Button>
             </div>
           ) : viewMode === "grid" ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
               {filtered.map((c) => (
                 <CandidateCard
                   key={c.id}
