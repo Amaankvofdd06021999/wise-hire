@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wise HR — AI-Augmented Hiring for Design & Tech Teams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   WISE HR — LANDING PAGE
+   Glass & Soft UI · Urbanist · SaaS Marketing
+   ============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Brand Palette */
+  --blue: #0E5EF5;
+  --blue-hover: #0B4DCC;
+  --blue-light: #ECF4F9;
+  --blue-50: rgba(14, 94, 245, 0.06);
+  --ink: #212123;
+  --ink-secondary: #55555A;
+  --ink-tertiary: #8A8A90;
+  --green: #36C054;
+  --red: #E05748;
+  --amber: #F5A623;
+  --white: #FFFFFF;
+  --off-white: #F7F8FA;
+  --border: rgba(33, 33, 35, 0.08);
+  --glass: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.3);
+
+  /* Shadows — blue-tinted per PRD */
+  --shadow-sm: 0 1px 3px rgba(14, 94, 245, 0.04), 0 1px 2px rgba(14, 94, 245, 0.03);
+  --shadow-md: 0 4px 16px rgba(14, 94, 245, 0.06), 0 2px 4px rgba(14, 94, 245, 0.03);
+  --shadow-lg: 0 12px 40px rgba(14, 94, 245, 0.08), 0 4px 12px rgba(14, 94, 245, 0.04);
+  --shadow-xl: 0 24px 64px rgba(14, 94, 245, 0.10), 0 8px 20px rgba(14, 94, 245, 0.05);
+
+  /* Typography — Urbanist, max 600 */
+  --font: 'Urbanist', sans-serif;
+
+  /* Spacing — 8px grid */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 40px;
+  --s-8: 48px;
+  --s-9: 64px;
+  --s-10: 80px;
+  --s-12: 96px;
+  --s-16: 128px;
+
+  /* Radius — pills & soft cards */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 100px;
+
+  /* Spring-like animation from PRD */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Layout */
+  --max-w: 1200px;
+  --max-w-wide: 1360px;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font);
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ---- UTILITY ---- */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--s-5); }
+.container--wide { max-width: var(--max-w-wide); margin: 0 auto; padding: 0 var(--s-5); }
+.text-center { text-align: center; }
+
+/* ---- TYPOGRAPHY HIERARCHY (Urbanist, max 600) ---- */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+  line-height: 1;
+}
+h1 {
+  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+h3 {
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+h4 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+}
+p { max-width: 62ch; }
+.text-center p,
+.features__header p,
+.metrics__header p,
+.integrations__header p,
+.logos-section p,
+.cta-box p { margin-left: auto; margin-right: auto; }
+.lead {
+  font-size: clamp(1.063rem, 1.3vw, 1.25rem);
+  font-weight: 400;
+  color: var(--ink-secondary);
+  line-height: 1.65;
+}
+.small-text {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--ink-tertiary);
+}
+
+/* ---- BUTTONS (PRD: 5 variants) ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+  padding: 13px 28px;
+  transition: all 0.25s var(--ease-out);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--white);
+}
+.btn--primary:hover { background: #333336; box-shadow: var(--shadow-md); }
+
+.btn--accent {
+  background: var(--blue);
+  color: var(--white);
+}
+.btn--accent:hover { background: var(--blue-hover); box-shadow: var(--shadow-md); }
+
+.btn--secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--border);
+}
+.btn--secondary:hover { border-color: var(--ink); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  padding: 13px 16px;
+}
+.btn--ghost:hover { color: var(--blue); }
+
+.btn--glass {
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--ink);
+  border: 1px solid var(--glass-border);
+}
+.btn--glass:hover { background: rgba(255,255,255,0.85); box-shadow: var(--shadow-sm); }
+
+/* ---- NAVIGATION ---- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 16px 0;
+  transition: all 0.3s var(--ease-out);
+}
+.nav.scrolled {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.nav__logo-mark {
+  width: 36px; height: 36px;
+  background: var(--blue);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.nav__logo-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--s-6);
+  list-style: none;
+}
+.nav__links a {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--ink-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav__links a:hover { color: var(--ink); }
+.nav__cta { display: flex; gap: 12px; align-items: center; }
+
+.nav__mobile-toggle {
+  display: none;
+  background: none; border: none;
+  cursor: pointer; padding: 8px;
+}
+.nav__mobile-toggle span {
+  display: block; width: 22px; height: 2px;
+  background: var(--ink); margin: 5px 0;
+  transition: all 0.25s;
+}
+
+/* ---- HERO ---- */
+.hero {
+  padding: 160px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero__bg {
+  position: absolute;
+  top: -200px; right: -300px;
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(14,94,245,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero__bg-2 {
+  position: absolute;
+  bottom: -100px; left: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(54,192,84,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero__content {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--s-7);
+}
+.hero__text { /* left column */ }
+.hero__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.hero__image img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+  animation: heroFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 20px 40px rgba(14, 94, 245, 0.12));
+}
+.hero__image::before {
+  content: '';
+  position: absolute;
+  width: 380px; height: 380px;
+  background: radial-gradient(circle, rgba(14,94,245,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+  animation: heroGlow 4s ease-in-out infinite alternate;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
+}
+@keyframes heroGlow {
+  0% { opacity: 0.5; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue-50);
+  border: 1px solid rgba(14,94,245,0.1);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px 8px 10px;
+  margin-bottom: var(--s-5);
+}
+.hero__badge-dot {
+  width: 8px; height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+.hero__badge-text {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--blue);
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 { margin-bottom: var(--s-5); }
+.hero h1 span { color: var(--blue); }
+.hero .lead { margin-bottom: var(--s-7); max-width: 540px; }
+.hero__actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: var(--s-6); }
+.hero__social-proof {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+.hero__avatars {
+  display: flex;
+}
+.hero__avatars span {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2.5px solid var(--white);
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+}
+.hero__avatars span:first-child { margin-left: 0; }
+.hero__proof-text {
+  font-size: 0.875rem;
+  color: var(--ink-secondary);
+  line-height: 1.4;
+}
+.hero__proof-text strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---- DASHBOARD SHOWCASE ---- */
+.dashboard-showcase {
+  padding: 0 0 var(--s-12);
+  position: relative;
+}
+.dashboard-frame {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+.dashboard {
+  background: var(--off-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  position: relative;
+}
+.dashboard__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.dashboard__dots {
+  display: flex; gap: 7px;
+}
+.dashboard__dots span {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+}
+.dashboard__dots span:nth-child(1) { background: #FF5F57; }
+.dashboard__dots span:nth-child(2) { background: #FFBD2E; }
+.dashboard__dots span:nth-child(3) { background: #28C840; }
+.dashboard__url {
+  background: var(--off-white);
+  border-radius: var(--radius-pill);
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  color: var(--ink-tertiary);
+  font-weight: 400;
+}
+.dashboard__body {
+  display: flex;
+  min-height: 520px;
+}
+
+/* Sidebar */
+.dash-sidebar {
+  width: 220px;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  padding: 20px 0;
+  flex-shrink: 0;
+}
+.dash-sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  margin-bottom: 28px;
+}
+.dash-sidebar__logo-mark {
+  width: 28px; height: 28px;
+  background: var(--blue);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 0.7rem;
+}
+.dash-sidebar__logo-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: -0.01em;
+}
+.dash-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--ink-secondary);
+  cursor: default;
+  transition: all 0.15s;
+  border-left: 2.5px solid transparent;
+}
+.dash-nav-item.active {
+  color: var(--blue);
+  font-weight: 500;
+  background: var(--blue-50);
+  border-left-color: var(--blue);
+}
+.dash-nav-item svg {
+  width: 18px; height: 18px;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+.dash-nav-item.active svg { opacity: 1; }
+
+/* Main Content Area */
+.dash-main {
+  flex: 1;
+  padding: 24px;
+  overflow: hidden;
+}
+.dash-main__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.dash-main__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.dash-main__subtitle {
+  font-size: 0.8rem;
+  color: var(--ink-tertiary);
+  margin-top: 3px;
+}
+.dash-main__header-actions {
+  display: flex; gap: 8px;
+}
+.dash-btn-sm {
+  font-family: var(--font);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--ink-secondary);
+  cursor: default;
+}
+.dash-btn-sm--accent {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+}
+
+/* Stat Cards Row */
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+}
+.stat-card__eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--ink-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.stat-card__value {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  line-height: 1;
+}
+.stat-card__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  margin-top: 6px;
+  padding: 2px 7px;
+  border-radius: var(--radius-pill);
+}
+.stat-card__delta--up {
+  color: var(--green);
+  background: rgba(54,192,84,0.08);
+}
+.stat-card__delta--down {
+  color: var(--red);
+  background: rgba(224,87,72,0.08);
+}
+
+/* Dashboard Grid: Chart + Activity */
+.dash-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 14px;
+}
+.dash-chart-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 18px;
+}
+.dash-chart-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.dash-chart-card__title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.dash-chart-card__tabs {
+  display: flex; gap: 2px;
+  background: var(--off-white);
+  border-radius: var(--radius-pill);
+  padding: 2px;
+}
+.dash-chart-tab {
+  font-family: var(--font);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  color: var(--ink-tertiary);
+  cursor: default;
+}
+.dash-chart-tab.active {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+
+/* SVG Chart Area */
+.dash-chart-svg {
+  width: 100%;
+  height: 170px;
+}
+
+/* Activity Feed */
+.dash-activity {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 18px;
+}
+.dash-activity__title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.activity-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.activity-dot--blue { background: var(--blue); }
+.activity-dot--green { background: var(--green); }
+.activity-dot--amber { background: var(--amber); }
+.activity-text {
+  font-size: 0.75rem;
+  color: var(--ink-secondary);
+  line-height: 1.45;
+}
+.activity-text strong { color: var(--ink); font-weight: 500; }
+.activity-time {
+  font-size: 0.6875rem;
+  color: var(--ink-tertiary);
+  margin-top: 2px;
+}
+
+/* ARIA floating btn in dashboard */
+.dash-aria-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 44px; height: 44px;
+  background: var(--blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(14,94,245,0.3);
+  color: white;
+  font-size: 1.1rem;
+}
+
+/* ---- LOGOS ---- */
+.logos-section {
+  padding: var(--s-9) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.logos-section p {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-bottom: var(--s-6);
+}
+.logos-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--s-9);
+  flex-wrap: wrap;
+}
+.logo-placeholder {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink-tertiary);
+  opacity: 0.35;
+  letter-spacing: -0.01em;
+  user-select: none;
+}
+
+/* ---- PROBLEM SECTION ---- */
+.problem {
+  padding: var(--s-16) 0 var(--s-12);
+}
+.problem__header {
+  margin-bottom: var(--s-9);
+}
+.problem__header .eyebrow { margin-bottom: var(--s-3); }
+.problem__header h2 { margin-bottom: var(--s-5); }
+.problem__header .lead { max-width: 600px; }
+
+.problem__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+}
+.problem__card {
+  background: var(--off-white);
+  border-radius: var(--radius-lg);
+  padding: var(--s-6) var(--s-5);
+  border: 1px solid var(--border);
+  transition: all 0.3s var(--ease-out);
+}
+.problem__card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(14,94,245,0.12);
+}
+.problem__card-number {
+  font-size: 3rem;
+  font-weight: 300;
+  color: rgba(14,94,245,0.15);
+  line-height: 1;
+  margin-bottom: var(--s-4);
+  letter-spacing: -0.04em;
+}
+.problem__card h4 { margin-bottom: var(--s-3); }
+.problem__card p {
+  font-size: 0.9rem;
+  color: var(--ink-secondary);
+  line-height: 1.6;
+}
+
+/* ---- FEATURES SECTION ---- */
+.features {
+  padding: var(--s-12) 0 var(--s-16);
+}
+.features__header {
+  text-align: center;
+  margin-bottom: var(--s-10);
+}
+.features__header .eyebrow { margin-bottom: var(--s-3); }
+.features__header h2 { margin-bottom: var(--s-5); }
+.features__header .lead { margin: 0 auto; max-width: 560px; }
+
+/* Feature Rows — alternating layout */
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-9);
+  align-items: center;
+  margin-bottom: var(--s-12);
+}
+.feature-row:last-child { margin-bottom: 0; }
+.feature-row--reverse .feature-row__visual { order: -1; }
+
+.feature-row__content .eyebrow {
+  margin-bottom: var(--s-3);
+}
+.feature-row__content h3 {
+  margin-bottom: var(--s-4);
+}
+.feature-row__content p {
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--s-5);
+}
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--ink-secondary);
+  line-height: 1.5;
+}
+.feature-list li .check {
+  width: 20px; height: 20px;
+  background: rgba(54,192,84,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--green);
+  font-size: 0.7rem;
+}
+
+/* Feature Visual — Mock UI cards */
+.feature-visual {
+  background: var(--off-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  padding: var(--s-5);
+  min-height: 380px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* -- AI Screening Visual -- */
+.screen-visual__header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px;
+}
+.screen-visual__title {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.screen-badge {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(14,94,245,0.08);
+  color: var(--blue);
+}
+
+.candidate-row {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+  gap: 12px;
+}
+.candidate-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+.candidate-info {
+  flex: 1;
+}
+.candidate-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.candidate-role {
+  font-size: 0.7rem;
+  color: var(--ink-tertiary);
+}
+.candidate-score {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.candidate-score--green { color: var(--green); }
+.candidate-score--blue { color: var(--blue); }
+.candidate-score--amber { color: var(--amber); }
+.candidate-verdict {
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+.verdict--strong { background: rgba(54,192,84,0.1); color: var(--green); }
+.verdict--good { background: rgba(14,94,245,0.08); color: var(--blue); }
+.verdict--review { background: rgba(245,166,35,0.1); color: var(--amber); }
+
+/* -- Portfolio Analysis Visual -- */
+.portfolio-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.portfolio-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 16px;
+}
+.portfolio-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.portfolio-card__title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.portfolio-card__score {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: -0.02em;
+}
+.score-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.score-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.score-bar-label {
+  font-size: 0.7rem;
+  color: var(--ink-tertiary);
+  width: 110px;
+  flex-shrink: 0;
+}
+.score-bar-track {
+  flex: 1;
+  height: 6px;
+  background: var(--off-white);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s var(--ease-out);
+}
+.score-bar-fill--blue { background: var(--blue); }
+.score-bar-fill--green { background: var(--green); }
+
+/* AI Content Detection strip */
+.ai-detect-strip {
+  background: var(--blue-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ai-detect-icon {
+  width: 32px; height: 32px;
+  background: var(--white);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+.ai-detect-text {
+  flex: 1;
+}
+.ai-detect-text strong {
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: block;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.ai-detect-text span {
+  font-size: 0.7rem;
+  color: var(--ink-tertiary);
+}
+.ai-detect-pct {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* -- Assessment Visual -- */
+.assess-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.assess-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.assess-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.assess-icon--code { background: rgba(14,94,245,0.08); }
+.assess-icon--design { background: rgba(54,192,84,0.08); }
+.assess-icon--system { background: rgba(245,166,35,0.08); }
+.assess-icon--debug { background: rgba(224,87,72,0.08); }
+.assess-info { flex: 1; }
+.assess-name {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.assess-desc {
+  font-size: 0.7rem;
+  color: var(--ink-tertiary);
+}
+.assess-tag {
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  background: var(--off-white);
+  color: var(--ink-tertiary);
+}
+
+/* ---- ARIA AI SECTION ---- */
+.aria-section {
+  padding: var(--s-16) 0;
+  background: var(--ink);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.aria-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -100px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(14,94,245,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.aria-section .eyebrow {
+  color: rgba(14,94,245,0.8);
+}
+.aria-section h2 {
+  color: var(--white);
+  margin-bottom: var(--s-5);
+}
+.aria-section .lead {
+  color: rgba(255,255,255,0.55);
+  margin-bottom: var(--s-8);
+}
+.aria__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-9);
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+.aria__chat {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-xl);
+  padding: var(--s-5);
+  backdrop-filter: blur(10px);
+}
+.aria-chat__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.aria-chat__avatar {
+  width: 36px; height: 36px;
+  background: var(--blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: white;
+}
+.aria-chat__name {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.aria-chat__status {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+}
+.aria-chat__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.chat-msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+.chat-msg--user {
+  background: var(--blue);
+  color: var(--white);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.chat-msg--aria {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.85);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.aria-chat__input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-pill);
+  padding: 10px 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.aria-chat__input span {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.25);
+  flex: 1;
+}
+.aria-chat__input-btn {
+  width: 28px; height: 28px;
+  background: var(--blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.7rem;
+}
+
+.aria__commands {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.aria-cmd {
+  display: flex;
+  gap: 14px;
+  padding: 18px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius-lg);
+  transition: all 0.25s;
+}
+.aria-cmd:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(14,94,245,0.3);
+}
+.aria-cmd__icon {
+  width: 40px; height: 40px;
+  background: rgba(14,94,245,0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.aria-cmd__title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.aria-cmd__desc {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.5;
+}
+
+/* ---- METRICS SECTION ---- */
+.metrics {
+  padding: var(--s-16) 0;
+}
+.metrics__header {
+  text-align: center;
+  margin-bottom: var(--s-9);
+}
+.metrics__header .eyebrow { margin-bottom: var(--s-3); }
+.metrics__header h2 { margin-bottom: var(--s-5); }
+
+.metrics__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5);
+}
+.metric-card {
+  text-align: center;
+  padding: var(--s-7) var(--s-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  transition: all 0.3s var(--ease-out);
+}
+.metric-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(14,94,245,0.12);
+}
+.metric-card__value {
+  font-size: 3.25rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.metric-card__label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--ink-secondary);
+}
+.metric-card__desc {
+  font-size: 0.75rem;
+  color: var(--ink-tertiary);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+/* ---- INTEGRATIONS ---- */
+.integrations {
+  padding: var(--s-12) 0 var(--s-16);
+}
+.integrations__header {
+  text-align: center;
+  margin-bottom: var(--s-9);
+}
+.integrations__header .eyebrow { margin-bottom: var(--s-3); }
+.integrations__header h2 { margin-bottom: var(--s-5); }
+.integrations__header .lead { margin: 0 auto; max-width: 500px; }
+
+.integrations__grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.integration-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-secondary);
+  transition: all 0.2s;
+}
+.integration-chip:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: var(--blue-50);
+}
+.integration-chip span {
+  font-size: 1.1rem;
+}
+
+/* ---- CTA SECTION ---- */
+.cta-section {
+  padding: var(--s-16) 0;
+}
+.cta-box {
+  background: var(--blue-light);
+  border-radius: var(--radius-xl);
+  padding: var(--s-10) var(--s-9);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(14,94,245,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-box .eyebrow { margin-bottom: var(--s-3); }
+.cta-box h2 { margin: 0 auto var(--s-5); }
+.cta-box .lead { margin: 0 auto var(--s-7); max-width: 480px; }
+.cta-box__actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- FOOTER ---- */
+.footer {
+  padding: var(--s-9) 0 var(--s-7);
+  border-top: 1px solid var(--border);
+}
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: var(--s-9);
+  margin-bottom: var(--s-9);
+}
+.footer__brand p {
+  font-size: 0.85rem;
+  color: var(--ink-tertiary);
+  line-height: 1.6;
+  margin-top: var(--s-4);
+  max-width: 280px;
+}
+.footer__col-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin-bottom: var(--s-4);
+}
+.footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer__links a {
+  font-size: 0.85rem;
+  color: var(--ink-tertiary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer__links a:hover { color: var(--ink); }
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+}
+.footer__bottom p {
+  font-size: 0.78rem;
+  color: var(--ink-tertiary);
+}
+.footer__bottom-links {
+  display: flex;
+  gap: var(--s-5);
+}
+.footer__bottom-links a {
+  font-size: 0.78rem;
+  color: var(--ink-tertiary);
+  text-decoration: none;
+}
+.footer__bottom-links a:hover { color: var(--ink); }
+
+/* ---- ANIMATIONS ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+.reveal-delay-7 { transition-delay: 0.7s; }
+.reveal-delay-8 { transition-delay: 0.8s; }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 1024px) {
+  .hero__content { grid-template-columns: 1fr; }
+  .hero__image { order: -1; max-width: 360px; margin: 0 auto; }
+  .feature-row { grid-template-columns: 1fr; gap: var(--s-7); }
+  .feature-row--reverse .feature-row__visual { order: 0; }
+  .aria__grid { grid-template-columns: 1fr; }
+  .dash-grid { grid-template-columns: 1fr; }
+  .dashboard__body { flex-direction: column; }
+  .dash-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border); padding: 14px 0; }
+  .dash-sidebar__logo { display: none; }
+  .dash-nav-item { display: inline-flex; padding: 7px 14px; border-left: none; border-radius: var(--radius-pill); }
+  .dash-nav-item.active { border-left: none; }
+  .dash-sidebar { display: flex; gap: 4px; padding: 10px 16px; overflow-x: auto; }
+  .footer__inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav__links { display: none; }
+  .nav__cta .btn--ghost { display: none; }
+  .nav__mobile-toggle { display: block; }
+  .hero { padding: 130px 0 60px; }
+  .hero h1 { font-size: 2.2rem; }
+  .problem__grid { grid-template-columns: 1fr; }
+  .dash-stats { grid-template-columns: repeat(2, 1fr); }
+  .metrics__grid { grid-template-columns: repeat(2, 1fr); }
+  .footer__inner { grid-template-columns: 1fr; gap: var(--s-7); }
+  .footer__bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .cta-box { padding: var(--s-8) var(--s-5); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">
+      <div class="nav__logo-mark">W</div>
+      <span class="nav__logo-text">Wise HR</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#aria">ARIA AI</a></li>
+      <li><a href="#metrics">Results</a></li>
+      <li><a href="#integrations">Integrations</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav__cta">
+      <a href="#" class="btn btn--ghost">Log in</a>
+      <a href="#" class="btn btn--primary">Start free trial</a>
+    </div>
+    <button class="nav__mobile-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__bg-2"></div>
+  <div class="hero__content">
+    <div class="hero__text">
+      <div class="hero__badge reveal">
+        <span class="hero__badge-dot"></span>
+        <span class="hero__badge-text">AI-native hiring platform</span>
+      </div>
+      <h1 class="reveal reveal-delay-1">Hire smarter.<br>Not <span>harder.</span></h1>
+      <p class="lead reveal reveal-delay-2">Wise HR uses multimodal AI to screen resumes, analyse portfolios, evaluate code, and surface the best candidates — so your team can focus on the conversations that matter.</p>
+      <div class="hero__actions reveal reveal-delay-3">
+        <a href="#" class="btn btn--accent">Start free trial <span>→</span></a>
+        <a href="#" class="btn btn--secondary">Book a demo</a>
+      </div>
+      <div class="hero__social-proof reveal reveal-delay-4">
+        <div class="hero__avatars">
+          <span style="background:#4A6CF7">SR</span>
+          <span style="background:#36C054">PK</span>
+          <span style="background:#E05748">AL</span>
+          <span style="background:#F5A623">MJ</span>
+          <span style="background:#8B5CF6">TS</span>
+        </div>
+        <p class="hero__proof-text">
+          <strong>1,200+ recruiters</strong> already saving 30+ hrs/week
+        </p>
+      </div>
+    </div>
+    <div class="hero__image reveal-right reveal-delay-2">
+      <img src="Frame_8.png" alt="HR professional using Wise HR platform" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== DASHBOARD SHOWCASE ===== -->
+<section class="dashboard-showcase">
+  <div class="dashboard-frame reveal-scale">
+    <div class="dashboard">
+      <div class="dashboard__topbar">
+        <div class="dashboard__dots">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="dashboard__url">app.wisehr.io/dashboard</div>
+        <div style="width:60px"></div>
+      </div>
+      <div class="dashboard__body">
+        <!-- Sidebar -->
+        <div class="dash-sidebar">
+          <div class="dash-sidebar__logo">
+            <div class="dash-sidebar__logo-mark">W</div>
+            <span class="dash-sidebar__logo-name">Wise HR</span>
+          </div>
+          <div class="dash-nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            Dashboard
+          </div>
+          <div class="dash-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+            Jobs
+          </div>
+          <div class="dash-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            Candidates
+          </div>
+          <div class="dash-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            AI Screening
+          </div>
+          <div class="dash-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            Assessments
+          </div>
+          <div class="dash-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Interviews
+          </div>
+          <div class="dash-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            Reports
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="dash-main">
+          <div class="dash-main__header">
+            <div>
+              <div class="dash-main__title">Hiring Command Centre</div>
+              <div class="dash-main__subtitle">Monday, 16 March 2026 · 12 active roles</div>
+            </div>
+            <div class="dash-main__header-actions">
+              <button class="dash-btn-sm">This week ▾</button>
+              <button class="dash-btn-sm dash-btn-sm--accent">+ New Job</button>
+            </div>
+          </div>
+
+          <!-- Stat Cards -->
+          <div class="dash-stats">
+            <div class="stat-card">
+              <div class="stat-card__eyebrow">Active Jobs</div>
+              <div class="stat-card__value">12</div>
+              <div class="stat-card__delta stat-card__delta--up">↑ +3 this week</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__eyebrow">In Pipeline</div>
+              <div class="stat-card__value">847</div>
+              <div class="stat-card__delta stat-card__delta--up">↑ +124 today</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__eyebrow">Avg. Time-to-Hire</div>
+              <div class="stat-card__value">28d</div>
+              <div class="stat-card__delta stat-card__delta--up">↑ −4d vs last month</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card__eyebrow">Avg. Cost/Hire</div>
+              <div class="stat-card__value">$18k</div>
+              <div class="stat-card__delta stat-card__delta--down">↓ −12% vs target</div>
+            </div>
+          </div>
+
+          <!-- Grid: Chart + Activity -->
+          <div class="dash-grid">
+            <div class="dash-chart-card">
+              <div class="dash-chart-card__header">
+                <div class="dash-chart-card__title">Pipeline Funnel</div>
+                <div class="dash-chart-card__tabs">
+                  <button class="dash-chart-tab active">All Roles</button>
+                  <button class="dash-chart-tab">Design</button>
+                  <button class="dash-chart-tab">Engineering</button>
+                </div>
+              </div>
+              <svg class="dash-chart-svg" viewBox="0 0 500 170">
+                <!-- Funnel bars -->
+                <rect x="20" y="10" width="440" height="28" rx="4" fill="#ECF4F9"/>
+                <rect x="20" y="10" width="440" height="28" rx="4" fill="var(--blue)" opacity="0.15"/>
+                <text x="30" y="28" font-family="Urbanist" font-size="10" fill="#55555A" font-weight="500">Applied</text>
+                <text x="430" y="28" font-family="Urbanist" font-size="11" fill="#212123" font-weight="600" text-anchor="end">847</text>
+
+                <rect x="20" y="44" width="340" height="28" rx="4" fill="var(--blue)" opacity="0.2"/>
+                <text x="30" y="62" font-family="Urbanist" font-size="10" fill="#55555A" font-weight="500">AI Screened</text>
+                <text x="330" y="62" font-family="Urbanist" font-size="11" fill="#212123" font-weight="600" text-anchor="end">612</text>
+
+                <rect x="20" y="78" width="220" height="28" rx="4" fill="var(--blue)" opacity="0.35"/>
+                <text x="30" y="96" font-family="Urbanist" font-size="10" fill="#55555A" font-weight="500">Shortlisted</text>
+                <text x="210" y="96" font-family="Urbanist" font-size="11" fill="#212123" font-weight="600" text-anchor="end">286</text>
+
+                <rect x="20" y="112" width="140" height="28" rx="4" fill="var(--blue)" opacity="0.55"/>
+                <text x="30" y="130" font-family="Urbanist" font-size="10" fill="white" font-weight="500">Interview</text>
+                <text x="130" y="130" font-family="Urbanist" font-size="11" fill="white" font-weight="600" text-anchor="end">94</text>
+
+                <rect x="20" y="146" width="60" height="22" rx="4" fill="var(--blue)"/>
+                <text x="30" y="161" font-family="Urbanist" font-size="10" fill="white" font-weight="500">Hired</text>
+                <text x="54" y="161" font-family="Urbanist" font-size="10" fill="white" font-weight="600">18</text>
+              </svg>
+            </div>
+
+            <div class="dash-activity">
+              <div class="dash-activity__title">ARIA Activity</div>
+              <div class="activity-item">
+                <span class="activity-dot activity-dot--blue"></span>
+                <div>
+                  <div class="activity-text"><strong>ARIA</strong> screened 47 new applications for Sr. Product Designer</div>
+                  <div class="activity-time">12 min ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot activity-dot--green"></span>
+                <div>
+                  <div class="activity-text"><strong>3 candidates</strong> auto-shortlisted for Frontend Engineer</div>
+                  <div class="activity-time">34 min ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot activity-dot--amber"></span>
+                <div>
+                  <div class="activity-text"><strong>AI content flag</strong> on resume — Priya M. held for review</div>
+                  <div class="activity-time">1 hr ago</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <span class="activity-dot activity-dot--blue"></span>
+                <div>
+                  <div class="activity-text"><strong>ARIA</strong> drafted 12 rejection emails — awaiting approval</div>
+                  <div class="activity-time">2 hrs ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-aria-btn">✦</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOGOS ===== -->
+<section class="logos-section">
+  <div class="container">
+    <p class="reveal">Trusted by teams at</p>
+    <div class="logos-row">
+      <span class="logo-placeholder reveal reveal-delay-1">Flipkart</span>
+      <span class="logo-placeholder reveal reveal-delay-2">Razorpay</span>
+      <span class="logo-placeholder reveal reveal-delay-3">Freshworks</span>
+      <span class="logo-placeholder reveal reveal-delay-4">CRED</span>
+      <span class="logo-placeholder reveal reveal-delay-5">Shopify</span>
+      <span class="logo-placeholder reveal reveal-delay-6">Atlassian</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEM SECTION ===== -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="problem__header">
+      <p class="eyebrow reveal">The problem</p>
+      <h2 class="reveal reveal-delay-1">Traditional hiring is<br>structurally broken</h2>
+      <p class="lead reveal reveal-delay-2">Top candidates are off the market in 10 days. Your hiring process takes 45. You're not losing people to better companies — you're losing them to your own workflow.</p>
+    </div>
+    <div class="problem__grid">
+      <div class="problem__card reveal">
+        <div class="problem__card-number">01</div>
+        <h4>Resume screening takes forever</h4>
+        <p>Recruiters spend 4–6 hours per role reading resumes. By application 200, pattern-matching replaces judgment. Bias enters through the back door.</p>
+      </div>
+      <div class="problem__card reveal reveal-delay-1">
+        <div class="problem__card-number">02</div>
+        <h4>Portfolios are reviewed by non-designers</h4>
+        <p>A keyword scanner can't tell the difference between beautiful screens with no UX thinking and rough wireframes backed by deep user research. Generic tools miss what matters.</p>
+      </div>
+      <div class="problem__card reveal reveal-delay-2">
+        <div class="problem__card-number">03</div>
+        <h4>AI-generated applications are invisible</h4>
+        <p>Candidates increasingly use AI to generate entire resumes and case study narratives. Fluent text masks fabricated experience. Existing tools don't even check.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="features__header">
+      <p class="eyebrow reveal">Platform Features</p>
+      <h2 class="reveal reveal-delay-1">Every module designed to<br>protect your best instincts</h2>
+      <p class="lead reveal reveal-delay-2">AI does the volume work. You make the decisions.</p>
+    </div>
+
+    <!-- Feature 1: AI Screening -->
+    <div class="feature-row">
+      <div class="feature-row__content reveal-left">
+        <p class="eyebrow">AI Screening Engine</p>
+        <h3>From 400 resumes to 12 shortlisted — in minutes, not days</h3>
+        <p>The moment a candidate applies, Wise HR parses their resume, crawls their portfolio, enriches their technical profile, scans for AI-generated content, and assigns a multi-signal fit score — all without HR involvement.</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span>NLP resume parsing with skills extraction</li>
+          <li><span class="check">✓</span>0–100 AI Fit Score with explainable reasoning</li>
+          <li><span class="check">✓</span>Configurable auto-screening rules engine</li>
+          <li><span class="check">✓</span>Human override on every AI decision</li>
+        </ul>
+      </div>
+      <div class="feature-row__visual reveal-right reveal-delay-1">
+        <div class="feature-visual">
+          <div class="screen-visual__header">
+            <span class="screen-visual__title">AI Screening — Sr. Product Designer</span>
+            <span class="screen-badge">47 screened</span>
+          </div>
+          <div class="candidate-row">
+            <div class="candidate-avatar" style="background:#4A6CF7">AK</div>
+            <div class="candidate-info">
+              <div class="candidate-name">Ananya Krishnan</div>
+              <div class="candidate-role">Sr. Product Designer · 6 yrs</div>
+            </div>
+            <div class="candidate-score candidate-score--green">92</div>
+            <span class="candidate-verdict verdict--strong">⭐ Strong Fit</span>
+          </div>
+          <div class="candidate-row">
+            <div class="candidate-avatar" style="background:#36C054">MR</div>
+            <div class="candidate-info">
+              <div class="candidate-name">Marcus Redfield</div>
+              <div class="candidate-role">UX Lead · 8 yrs</div>
+            </div>
+            <div class="candidate-score candidate-score--blue">78</div>
+            <span class="candidate-verdict verdict--good">✅ Good Fit</span>
+          </div>
+          <div class="candidate-row">
+            <div class="candidate-avatar" style="background:#F5A623">SP</div>
+            <div class="candidate-info">
+              <div class="candidate-name">Sara Petrov</div>
+              <div class="candidate-role">Product Designer · 4 yrs</div>
+            </div>
+            <div class="candidate-score candidate-score--amber">54</div>
+            <span class="candidate-verdict verdict--review">⚠️ Review</span>
+          </div>
+          <div style="margin-top:14px">
+            <div class="ai-detect-strip">
+              <div class="ai-detect-icon">🛡</div>
+              <div class="ai-detect-text">
+                <strong>AI Content Detection</strong>
+                <span>Resume scanned · Low AI-generation probability</span>
+              </div>
+              <div class="ai-detect-pct">12%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 2: Portfolio Analysis -->
+    <div class="feature-row feature-row--reverse">
+      <div class="feature-row__content reveal-right">
+        <p class="eyebrow">Portfolio Analysis</p>
+        <h3>Evaluate design portfolios with the depth of a design lead</h3>
+        <p>Wise HR crawls portfolio URLs, analyses visual design quality, UX thinking depth, case study clarity, business impact articulation, and process documentation — scoring each on a 0–10 scale with project-level breakdowns.</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span>Multimodal AI analysis — vision + NLP</li>
+          <li><span class="check">✓</span>5-dimension scoring with comparative ranking</li>
+          <li><span class="check">✓</span>Tool detection — Figma, Framer, XD, Sketch</li>
+          <li><span class="check">✓</span>Bulk portfolio screening — 50 URLs in 5 minutes</li>
+        </ul>
+      </div>
+      <div class="feature-row__visual reveal-left reveal-delay-1">
+        <div class="feature-visual">
+          <div class="portfolio-visual">
+            <div class="portfolio-card">
+              <div class="portfolio-card__header">
+                <div class="portfolio-card__title">Portfolio Score — Ananya K.</div>
+                <div class="portfolio-card__score">87</div>
+              </div>
+              <div class="score-bars">
+                <div class="score-bar-item">
+                  <span class="score-bar-label">Visual Design</span>
+                  <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--blue" style="width:90%"></div></div>
+                </div>
+                <div class="score-bar-item">
+                  <span class="score-bar-label">UX Thinking</span>
+                  <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--blue" style="width:82%"></div></div>
+                </div>
+                <div class="score-bar-item">
+                  <span class="score-bar-label">Case Study Clarity</span>
+                  <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--green" style="width:88%"></div></div>
+                </div>
+                <div class="score-bar-item">
+                  <span class="score-bar-label">Business Impact</span>
+                  <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--green" style="width:76%"></div></div>
+                </div>
+                <div class="score-bar-item">
+                  <span class="score-bar-label">Process Docs</span>
+                  <div class="score-bar-track"><div class="score-bar-fill score-bar-fill--blue" style="width:92%"></div></div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px">
+              <div style="flex:1;background:var(--white);border-radius:var(--radius-md);border:1px solid var(--border);padding:14px;text-align:center">
+                <div style="font-size:0.7rem;color:var(--ink-tertiary);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em">Rank</div>
+                <div style="font-size:1.25rem;font-weight:600;color:var(--blue)">3<span style="font-size:0.75rem;font-weight:400;color:var(--ink-tertiary)"> / 24</span></div>
+              </div>
+              <div style="flex:1;background:var(--white);border-radius:var(--radius-md);border:1px solid var(--border);padding:14px;text-align:center">
+                <div style="font-size:0.7rem;color:var(--ink-tertiary);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em">Tools</div>
+                <div style="font-size:0.8rem;font-weight:500;color:var(--ink)">Figma · Framer</div>
+              </div>
+              <div style="flex:1;background:var(--white);border-radius:var(--radius-md);border:1px solid var(--border);padding:14px;text-align:center">
+                <div style="font-size:0.7rem;color:var(--ink-tertiary);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em">Cases</div>
+                <div style="font-size:1.25rem;font-weight:600;color:var(--ink)">5</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: Assessments -->
+    <div class="feature-row">
+      <div class="feature-row__content reveal-left">
+        <p class="eyebrow">Assessment Centre</p>
+        <h3>Code tests and design briefs that respect candidates' time</h3>
+        <p>AI generates role-specific assessments — coding challenges with auto-grading, design briefs with multimodal evaluation, system design prompts, and debugging tasks — all proctored, time-tracked, and scored consistently.</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span>Browser-based IDE with hidden test cases</li>
+          <li><span class="check">✓</span>AI-generated briefs matched to your product domain</li>
+          <li><span class="check">✓</span>Code quality analysis — readability, efficiency, edge cases</li>
+          <li><span class="check">✓</span>Comparative candidate ranking per role</li>
+        </ul>
+      </div>
+      <div class="feature-row__visual reveal-right reveal-delay-1">
+        <div class="feature-visual">
+          <div class="screen-visual__header">
+            <span class="screen-visual__title">Assessment Library</span>
+            <span class="screen-badge">4 types</span>
+          </div>
+          <div class="assess-visual">
+            <div class="assess-card">
+              <div class="assess-icon assess-icon--code">⌨</div>
+              <div class="assess-info">
+                <div class="assess-name">Coding Challenge</div>
+                <div class="assess-desc">Multi-question test · Auto-graded · Hidden cases</div>
+              </div>
+              <span class="assess-tag">60 min</span>
+            </div>
+            <div class="assess-card">
+              <div class="assess-icon assess-icon--design">✏</div>
+              <div class="assess-info">
+                <div class="assess-name">Design Brief</div>
+                <div class="assess-desc">AI-generated brief · Figma submission · 5-axis scoring</div>
+              </div>
+              <span class="assess-tag">3 days</span>
+            </div>
+            <div class="assess-card">
+              <div class="assess-icon assess-icon--system">◈</div>
+              <div class="assess-info">
+                <div class="assess-name">System Design</div>
+                <div class="assess-desc">Open-ended architecture · Whiteboard tool · AI evaluation</div>
+              </div>
+              <span class="assess-tag">45 min</span>
+            </div>
+            <div class="assess-card">
+              <div class="assess-icon assess-icon--debug">🔧</div>
+              <div class="assess-info">
+                <div class="assess-name">Debugging Challenge</div>
+                <div class="assess-desc">Fix broken code · Seniority-calibrated · Approach analysis</div>
+              </div>
+              <span class="assess-tag">30 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ARIA AI SECTION ===== -->
+<section class="aria-section" id="aria">
+  <div class="container">
+    <div class="aria__grid">
+      <div>
+        <p class="eyebrow reveal">Meet ARIA</p>
+        <h2 class="reveal reveal-delay-1">Your AI hiring<br>assistant that acts</h2>
+        <p class="lead reveal reveal-delay-2">ARIA is a natural-language AI agent that lives on every screen. Ask it to post jobs, filter candidates, send assessments, draft emails, or explain any metric — in plain English.</p>
+        <div class="aria__commands reveal reveal-delay-3">
+          <div class="aria-cmd">
+            <div class="aria-cmd__icon">📝</div>
+            <div>
+              <div class="aria-cmd__title">Job Posting</div>
+              <div class="aria-cmd__desc">"Post a senior frontend engineer role for our payments team, remote-first, React required"</div>
+            </div>
+          </div>
+          <div class="aria-cmd">
+            <div class="aria-cmd__icon">🔍</div>
+            <div>
+              <div class="aria-cmd__title">Smart Filtering</div>
+              <div class="aria-cmd__desc">"Show me all candidates with portfolio score above 70 who haven't been contacted yet"</div>
+            </div>
+          </div>
+          <div class="aria-cmd">
+            <div class="aria-cmd__icon">📊</div>
+            <div>
+              <div class="aria-cmd__title">Instant Insights</div>
+              <div class="aria-cmd__desc">"Why is our engineering pipeline converting 20% lower than last quarter?"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="aria__chat">
+          <div class="aria-chat__header">
+            <div class="aria-chat__avatar">✦</div>
+            <div>
+              <div class="aria-chat__name">ARIA</div>
+              <div class="aria-chat__status">AI Hiring Agent · Online</div>
+            </div>
+          </div>
+          <div class="aria-chat__messages">
+            <div class="chat-msg chat-msg--user">Show me the top 5 candidates for the Design Lead role with Figma experience</div>
+            <div class="chat-msg chat-msg--aria">Found 5 candidates matching your criteria. Ananya Krishnan leads with an AI Fit Score of 92 — strong portfolio with 5 case studies, all in Figma. Marcus Redfield is close at 78 with 8 years of UX leadership experience. Want me to send assessments to the top 3?</div>
+            <div class="chat-msg chat-msg--user">Yes, send the design brief assessment to the top 3</div>
+            <div class="chat-msg chat-msg--aria">Done. Assessment invitations sent to Ananya K., Marcus R., and Wei L. — 3-day deadline, Figma submission required. I'll notify you when submissions arrive. ✓</div>
+          </div>
+          <div class="aria-chat__input">
+            <span>Ask ARIA anything...</span>
+            <div class="aria-chat__input-btn">↑</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METRICS ===== -->
+<section class="metrics" id="metrics">
+  <div class="container">
+    <div class="metrics__header">
+      <p class="eyebrow reveal">Measurable Impact</p>
+      <h2 class="reveal reveal-delay-1">Numbers that matter<br>to your hiring team</h2>
+    </div>
+    <div class="metrics__grid">
+      <div class="metric-card reveal-scale">
+        <div class="metric-card__value">30%</div>
+        <div class="metric-card__label">Faster Time-to-Hire</div>
+        <div class="metric-card__desc">From 45 days down to 31 — AI automation at sourcing and screening stages</div>
+      </div>
+      <div class="metric-card reveal-scale reveal-delay-1">
+        <div class="metric-card__value">20%</div>
+        <div class="metric-card__label">Lower Cost-per-Hire</div>
+        <div class="metric-card__desc">Reduced recruiter hours on administrative screening tasks</div>
+      </div>
+      <div class="metric-card reveal-scale reveal-delay-2">
+        <div class="metric-card__value">15m</div>
+        <div class="metric-card__label">Resume Screening Time</div>
+        <div class="metric-card__desc">Down from 4–6 hours per role — NLP parsing replaces manual review</div>
+      </div>
+      <div class="metric-card reveal-scale reveal-delay-3">
+        <div class="metric-card__value">90%</div>
+        <div class="metric-card__label">AI Content Detection</div>
+        <div class="metric-card__desc">Recall rate on AI-generated resumes, cover letters, and portfolio copy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTEGRATIONS ===== -->
+<section class="integrations" id="integrations">
+  <div class="container">
+    <div class="integrations__header">
+      <p class="eyebrow reveal">Integrations</p>
+      <h2 class="reveal reveal-delay-1">Connects to your<br>existing stack</h2>
+      <p class="lead reveal reveal-delay-2">Publish jobs, sync candidates, and automate workflows across every platform your team already uses.</p>
+    </div>
+    <div class="integrations__grid reveal">
+      <div class="integration-chip reveal-scale reveal-delay-1"><span>💼</span> LinkedIn</div>
+      <div class="integration-chip reveal-scale reveal-delay-1"><span>📋</span> Naukri</div>
+      <div class="integration-chip reveal-scale reveal-delay-2"><span>🔎</span> Indeed</div>
+      <div class="integration-chip reveal-scale reveal-delay-2"><span>💬</span> Slack</div>
+      <div class="integration-chip reveal-scale reveal-delay-3"><span>📧</span> Gmail</div>
+      <div class="integration-chip reveal-scale reveal-delay-3"><span>📅</span> Google Calendar</div>
+      <div class="integration-chip reveal-scale reveal-delay-4"><span>🏢</span> BambooHR</div>
+      <div class="integration-chip reveal-scale reveal-delay-4"><span>⚙</span> Workday</div>
+      <div class="integration-chip reveal-scale reveal-delay-5"><span>🌐</span> Darwinbox</div>
+      <div class="integration-chip reveal-scale reveal-delay-5"><span>🔗</span> GitHub</div>
+      <div class="integration-chip reveal-scale reveal-delay-6"><span>🎨</span> Figma</div>
+      <div class="integration-chip reveal-scale reveal-delay-6"><span>🔐</span> SAML SSO</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" id="pricing">
+  <div class="container">
+    <div class="cta-box reveal-scale">
+      <p class="eyebrow">Get started</p>
+      <h2>Hire the people your<br>team actually needs</h2>
+      <p class="lead">Start your 14-day free trial. No credit card required. Set up in under 5 minutes.</p>
+      <div class="cta-box__actions">
+        <a href="#" class="btn btn--accent">Start free trial <span>→</span></a>
+        <a href="#" class="btn btn--secondary">Talk to sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand reveal">
+        <a href="#" class="nav__logo">
+          <div class="nav__logo-mark">W</div>
+          <span class="nav__logo-text">Wise HR</span>
+        </a>
+        <p>The AI-native hiring platform for Design and Technology teams. Built to protect human judgment, not replace it.</p>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <h4 class="footer__col-title">Product</h4>
+        <ul class="footer__links">
+          <li><a href="#">Features</a></li>
+          <li><a href="#">AI Screening</a></li>
+          <li><a href="#">Assessments</a></li>
+          <li><a href="#">ARIA Agent</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <h4 class="footer__col-title">Company</h4>
+        <ul class="footer__links">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-3">
+        <h4 class="footer__col-title">Resources</h4>
+        <ul class="footer__links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">AI Ethics Policy</a></li>
+          <li><a href="#">System Status</a></li>
+          <li><a href="#">Security</a></li>
+          <li><a href="#">GDPR</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom reveal reveal-delay-4">
+      <p>© 2026 Wise HR. All rights reserved.</p>
+      <div class="footer__bottom-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll behavior
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Scroll reveal — handles all reveal types
+const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+revealElements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

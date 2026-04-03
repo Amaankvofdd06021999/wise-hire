@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+/* ============================================================
+   WISEHIRE DESIGN TOKENS — Blue Brand System
+   ============================================================ */
+
+:root {
+  /* ----------------------------------------------------------
+     Brand (Blue)
+     ---------------------------------------------------------- */
+  --brand-25:  #F5F9FF;
+  --brand-50:  #EFF6FF;
+  --brand-100: #DBEAFE;
+  --brand-200: #BFDBFE;
+  --brand-300: #93C5FD;
+  --brand-400: #60A5FA;
+  --brand-500: #3B82F6;
+  --brand-600: #0E5EF5;
+  --brand-700: #0B4DCC;
+  --brand-800: #1E40AF;
+  --brand-900: #1E3A8A;
+  --brand-950: #172554;
+
+  /* ----------------------------------------------------------
+     Gray
+     ---------------------------------------------------------- */
+  --gray-25:  #FCFCFD;
+  --gray-50:  #F9FAFB;
+  --gray-100: #F2F4F7;
+  --gray-200: #EAECF0;
+  --gray-300: #D0D5DD;
+  --gray-400: #98A2B3;
+  --gray-500: #667085;
+  --gray-600: #475467;
+  --gray-700: #344054;
+  --gray-800: #1D2939;
+  --gray-900: #101828;
+  --gray-950: #0C111D;
+
+  /* ----------------------------------------------------------
+     Success (Green)
+     ---------------------------------------------------------- */
+  --success-25:  #F6FEF9;
+  --success-50:  #EDFCF2;
+  --success-100: #D3F8DF;
+  --success-500: #16B364;
+  --success-600: #099250;
+  --success-700: #087443;
+
+  /* ----------------------------------------------------------
+     Warning (Yellow / Amber)
+     ---------------------------------------------------------- */
+  --warning-25:  #FEFDF0;
+  --warning-50:  #FEFBE8;
+  --warning-100: #FEF7C3;
+  --warning-500: #EAAA08;
+  --warning-600: #CA8504;
+  --warning-700: #A15C07;
+
+  /* ----------------------------------------------------------
+     Error (Red)
+     ---------------------------------------------------------- */
+  --error-25:  #FFF5F6;
+  --error-50:  #FFF1F3;
+  --error-100: #FFE4E8;
+  --error-500: #F63D68;
+  --error-600: #E31B54;
+  --error-700: #C01048;
+
+  /* ----------------------------------------------------------
+     Shadows — Blue-tinted
+     ---------------------------------------------------------- */
+  --shadow-xs: 0px 1px 2px rgba(14, 94, 245, 0.04);
+  --shadow-sm: 0px 1px 3px rgba(14, 94, 245, 0.04), 0px 1px 2px rgba(14, 94, 245, 0.03);
+  --shadow-md: 0px 4px 16px rgba(14, 94, 245, 0.06), 0px 2px 4px rgba(14, 94, 245, 0.03);
+  --shadow-lg: 0px 12px 40px rgba(14, 94, 245, 0.08), 0px 4px 12px rgba(14, 94, 245, 0.04);
+  --shadow-xl: 0px 24px 64px rgba(14, 94, 245, 0.10), 0px 8px 20px rgba(14, 94, 245, 0.05);
+  --shadow-2xl: 0px 24px 48px rgba(14, 94, 245, 0.14);
+
+  /* ----------------------------------------------------------
+     shadcn/ui variable overrides
+     ---------------------------------------------------------- */
+  --background:   var(--gray-25);
+  --foreground:   var(--gray-900);
+
+  --card:         #ffffff;
+  --card-foreground: var(--gray-900);
+
+  --popover:      #ffffff;
+  --popover-foreground: var(--gray-900);
+
+  --primary:      var(--brand-600);
+  --primary-foreground: #ffffff;
+
+  --secondary:    var(--gray-100);
+  --secondary-foreground: var(--gray-700);
+
+  --muted:        var(--gray-100);
+  --muted-foreground: var(--gray-500);
+
+  --accent:       var(--brand-50);
+  --accent-foreground: var(--brand-700);
+
+  --destructive:  var(--error-600);
+  --destructive-foreground: #ffffff;
+
+  --border:       var(--gray-200);
+  --input:        var(--gray-200);
+  --ring:         var(--brand-500);
+
+  --radius: 0.75rem;
+
+  /* Font — Urbanist */
+  --font-sans: var(--font-urbanist), 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ============================================================
+   TAILWIND THEME INTEGRATION
+   ============================================================ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-urbanist), 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   TYPOGRAPHY — Urbanist scale
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--gray-900);
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* Focus ring — consistent keyboard nav outline */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+  border-radius: calc(var(--radius) - 2px);
+}
+
+/* AI content zone — Brand/25 background + Brand/200 left accent border */
+.ai-content-zone {
+  background-color: var(--brand-25);
+  border-left: 3px solid var(--brand-200);
+  padding: 0.75rem 1rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ----------------------------------------------------------
+   Score badge variants
+   ---------------------------------------------------------- */
+.score-strong {
+  color: var(--success-700);
+  background-color: var(--success-50);
+}
+
+.score-good {
+  color: var(--brand-700);
+  background-color: var(--brand-50);
+}
+
+.score-review {
+  color: var(--warning-700);
+  background-color: var(--warning-50);
+}
+
+.score-not-fit {
+  color: var(--error-700);
+  background-color: var(--error-50);
+}
+
+/* ----------------------------------------------------------
+   Skeleton shimmer loader
+   ---------------------------------------------------------- */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--gray-100) 25%,
+    var(--gray-50)  50%,
+    var(--gray-100) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius);
+}
+
+/* ----------------------------------------------------------
+   Blue-tinted progress bars
+   ---------------------------------------------------------- */
+.progress-blue {
+  background-color: var(--brand-100);
+}
+.progress-blue > div {
+  background-color: var(--brand-600);
+}
